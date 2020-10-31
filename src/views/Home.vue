@@ -1,18 +1,37 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Todos v-bind:todos="todos" />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Todos from '../components/Todos'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    Todos
+  },
+  data () {
+    return {
+      todos: [
+        {
+          id: 1,
+          title: 'todo one',
+          complete: false
+        },
+        {
+          id: 2,
+          title: 'todo two',
+          complete: true
+        },
+        {
+          id: 3,
+          title: 'todo three',
+          complete: true
+        }
+      ]
+    }
   }
 }
 </script>
