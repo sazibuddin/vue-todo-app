@@ -1,21 +1,19 @@
 <template>
     <div>
         <h1>Todos</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius nam perspiciatis dolorum minus cum. Provident eos laborum, architecto in sequi doloribus tempore asperiores itaque totam voluptatem ea accusantium a! Quod.</p>
         <div v-for="todo in todos" :key="todo.id">
-            <h3>{{ todo.title }} </h3>
+            <TodoItem v-bind:todo='todo'/>
         </div>
     </div>
 </template>
 
 <script>
+import TodoItem from './TodoItem'
 export default {
   name: 'Todos',
+  components: {
+    TodoItem
+  },
   props: ['todos']
 }
-
 </script>
-
-<style scoped>
-
-</style>
