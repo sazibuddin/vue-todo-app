@@ -1,6 +1,8 @@
 <template>
   <div class="todo-item" v-bind:class="{ 'is-complete': todoData.complete }">
-    <p><input type="checkbox" @change="markComplete" /> {{ todoData.title }}</p>
+    <p><input type="checkbox" @change="markComplete" /> {{ todoData.title }}
+    <button @click="$emit('del-todo' , todoData.id )" class="del">x</button>
+    </p>
   </div>
 </template>
 

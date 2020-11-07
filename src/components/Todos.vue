@@ -1,8 +1,7 @@
 <template>
     <div>
-        <h1>Todos</h1>
         <div :key="todo.id" v-for="todo in todos">
-            <TodoItem  v-bind:todo_prop="todo"/>
+            <TodoItem  v-bind:todo_prop="todo" v-on:de-todo="$emit('del-todo' , todo.id)"/>
         </div>
     </div>
 </template>
