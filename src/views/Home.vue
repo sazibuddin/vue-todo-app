@@ -10,6 +10,7 @@
 import Header from '../components/layout/Header';
 import AddTodo from '../components/AddTodo';
 import Todos from '../components/Todos'
+import axios from 'axios';
 
 export default {
   name: 'Home',
@@ -20,23 +21,7 @@ export default {
   },
   data () {
     return {
-      todos: [
-        {
-          id: 1,
-          title: 'todo one',
-          complete: false
-        },
-        {
-          id: 2,
-          title: 'todo two',
-          complete: true
-        },
-        {
-          id: 3,
-          title: 'todo three',
-          complete: true
-        }
-      ]
+      todos: []
     }
   },
   methods: {
@@ -44,8 +29,19 @@ export default {
       this.todos = this.todos.filter(todo => todo.id !== id);
     },
     addTodo(newTodo) {
-      this.todos = [...this.todos , newTodo];
+      const { title , complete } = newTodo;
+      axios.post('https://jsonplaceholder.typicode.com/todos', {
+        title,
+        complete
+      })
+      .then(res => this.todos = [...this.todos , newTodo])
+      .catch(err => console.log(err))
     }
+  },
+  created() {
+    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=5')
+    .then(res => this.todos = res.data)
+    .catch(err => console.log(err))
   }
 }
 </script>
