@@ -7,45 +7,46 @@
 </template>
 
 <script>
-import Header from '../components/layout/Header';
-import AddTodo from '../components/AddTodo';
-import Todos from '../components/Todos'
-import axios from 'axios';
+import Header from "../components/layout/Header";
+import AddTodo from "../components/AddTodo";
+import Todos from "../components/Todos";
+import axiosInstance from "../axiosInstance";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
     Header,
     AddTodo,
-    Todos
+    Todos,
   },
-  data () {
+  data() {
     return {
-      todos: []
-    }
+      todos: [],
+    };
   },
   methods: {
     deleteTodo(id) {
-      this.todos = this.todos.filter(todo => todo.id !== id);
+      this.todos = this.todos.filter((todo) => todo.id !== id);
     },
     addTodo(newTodo) {
-      const { title , complete } = newTodo;
-      axios.post('https://jsonplaceholder.typicode.com/todos', {
-        title,
-        complete
-      })
-      .then(res => this.todos = [...this.todos , newTodo])
-      .catch(err => console.log(err))
-    }
+      const { title, complete } = newTodo;
+      axiosInstance
+        .post("https://jsonplaceholder.typicode.com/todos", {
+          title,
+          complete,
+        })
+        .then((res) => (this.todos = [...this.todos, newTodo]))
+        .catch((err) => console.log(err));
+    },
   },
   created() {
-    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=5')
-    .then(res => this.todos = res.data)
-    .catch(err => console.log(err))
-  }
-}
+    axiosInstance
+      .get("/brands")
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  },
+};
 </script>
 
 <style scoped>
-
 </style>
